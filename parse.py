@@ -84,26 +84,16 @@ def parse_formula(input_string):
     
     return tree
 
-
-# Test
+#Test
 if __name__ == "__main__":
-    tests = [
-        "AND A B",
-        "(and a b)",
-        "NOT A",
-        "(not a)",
-        "IMPLIES (AND A B) C",
-        "implies (and a b) c",
-        "BICONDITIONAL A (OR B C)",
-        "biconditional a (or b c)",
-        "AND A (OR B C)",
-        "and a (or b c)"
-    ]
-    
-    for test in tests:
+    # Interactive mode
+    while True:
+        user_input = input("Enter formula (or 'quit' to exit): ")
+        if user_input.lower() == 'quit':
+            break
+        
         try:
-            print(f"Input:  {test}")
-            tree = parse_formula(test)
-            print(f"Tree:   {tree}\n")
+            tree = parse_formula(user_input)
+            print(f"Result: {tree}\n")
         except Exception as e:
-            print(f"Error:  {e}\n")
+            print(f"Error: {e}\n")
