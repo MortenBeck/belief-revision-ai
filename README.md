@@ -40,6 +40,24 @@ The engine may optionally be used to play Mastermind as the code-breaker, using 
 
 > Instructions to be added once implementation language and structure are decided.
 
+## Input Format
+
+The belief revision engine accepts propositional logic formulas in **Polish notation** (prefix notation), where operators appear before their operands.
+
+### Polish Notation Examples
+
+- **Conjunction (AND)**: `A ∧ B` is written as `AND A B`
+- **Disjunction (OR)**: `A ∨ B` is written as `OR A B`
+- **Negation (NOT)**: `¬A` is written as `NOT A`
+- **Implication**: `A → B` is written as `IMPLIES A B`
+- **Biconditional**: `A ↔ B` is written as `BICONDITIONAL A B`
+
+### Complex Example
+
+The formula `(A ∧ B) → C` is written as `IMPLIES (AND A B) C`
+
+Parentheses are used for grouping, and the notation is case-insensitive (e.g., `and a b` works the same as `AND A B`).
+
 ## Report
 
 The accompanying report (4–6 pages) covers formalism, implementation choices, and lessons learned.
