@@ -5,6 +5,12 @@ from cnf import to_cnf
 
 
 def main():
+    print("Logic Parser (Polish / Prefix Notation)")
+    print("Examples:")
+    print("  AND A B")
+    print("  OR A (AND B C)")
+    print("  IMPLIES A B")
+    print("  NOT A")
     while True:
         user_input = input("Enter formula (or 'quit'): ")
 
