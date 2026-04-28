@@ -35,6 +35,9 @@ if __name__ == "__main__":
     from parse import parse_formula
     from cnf import to_cnf
 
+
+# WE PROBABLY NEED A DIFFERENT FORMATTING WITH V INSTEAD OF JUST COMMAS
+
 # Test: OR(A, NOT(B))
 formula = to_cnf(parse_formula("OR A (NOT B)"))
 result = convert_to_set(formula)
@@ -44,4 +47,6 @@ print(result)  # Should print: {'A', '~B'}
 formula2 = to_cnf(parse_formula("AND A (OR B (NOT C))"))
 result2 = convert_from_single_to_multiple(formula2)
 print(result2)  # Should print: [{'A'}, {'B', '~C'}]
+
+
     
