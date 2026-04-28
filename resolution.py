@@ -22,6 +22,7 @@ def convert_from_single_to_multiple(node):
         return [convert_to_set(node)]
     
 def negate(var):
+    """Method to negate a variable"""
     if var.startswith('~'):
         return var[1:]
     return f'~{var}'
