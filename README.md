@@ -61,3 +61,8 @@ Parentheses are used for grouping, and the notation is case-insensitive (e.g., `
 ## Report
 
 The accompanying report (4–6 pages) covers formalism, implementation choices, and lessons learned.
+
+
+## Use of Generative AI
+
+Generative AI was used as an analytical tool for this project as well as for writing commit messages. 
