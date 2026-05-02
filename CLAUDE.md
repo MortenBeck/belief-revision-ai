@@ -7,15 +7,24 @@
 A propositional belief revision engine following the AGM framework.
 Input is Polish (prefix) notation. No external logic packages are used.
 
+## Submission (due May 4th, 2026 at 23:59 via DTU Learn)
+
+Three files required:
+1. PDF report (4–6 pages) — see Report section below
+2. PDF declaration of labour division among group members
+3. ZIP of source code including this README
+
 ## How to run
 
 ```bash
 # Interactive REPL
 python main.py
 
-# Full test suite (85 tests, all passing as of 2026-05-02)
-/Library/Frameworks/Python.framework/Versions/3.13/bin/pytest tests/ -v
+# Full test suite
+pytest tests/ -v
 ```
+
+Python 3.13 is used in development (`/Library/Frameworks/Python.framework/Versions/3.13/bin/pytest` if `pytest` is not on PATH).
 
 ## Module map
 
@@ -76,13 +85,35 @@ For **contraction** `K ÷ φ`:
 4. **Recovery** — `K ⊆ Cn((K ÷ φ) + φ)`
 5. **Extensionality** — `φ ≡ ψ` implies `K ÷ φ = K ÷ ψ`
 
+## Report requirements
+
+The report (4–6 pages, +1 if Mastermind is implemented) must include:
+- **Introduction** — belief revision problem in general, then the specific approach taken
+- **Belief base design** — data structure and priority ordering
+- **Entailment** — resolution-based approach, CNF pipeline
+- **Contraction** — partial meet contraction, selection function, epistemic entrenchment
+- **Expansion** — how formulas are added
+- **Revision** — Levi identity, how it combines contraction and expansion
+- **AGM postulate verification** — show the postulates hold with examples/proofs
+- **Lessons learned** section
+- **Conclusion and further work**
+
+Grade is split equally between report quality and implementation quality.
+Be mathematically precise and use course terminology throughout.
+
+## Git
+
+- Working branch: `test-based`
+- Main branch: `main`
+- PRs go from `test-based` → `main`
+
 ## Formula syntax (Polish notation)
 
 ```
-AND A B          →  A ∧ B
-OR A B           →  A ∨ B
-NOT A            →  ¬A
-IMPLIES A B      →  A → B
+AND A B           →  A ∧ B
+OR A B            →  A ∨ B
+NOT A             →  ¬A
+IMPLIES A B       →  A → B
 BICONDITIONAL A B →  A ↔ B
 IMPLIES (AND A B) C   →  (A ∧ B) → C
 ```
