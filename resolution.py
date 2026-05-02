@@ -29,6 +29,58 @@ def negate(var):
     return f'~{var}'
 
 
+def clauses_from_cnf(node):
+    """Flatten a CNF parse tree into a list of clauses (frozensets of literals).
+
+    Recurses through AND nodes at any depth so nested conjunctions are
+    flattened; anything else is treated as a single clause.
+    """
+    if isinstance(node, Operator) and node.operator == 'AND':
+        return clauses_from_cnf(node.left) + clauses_from_cnf(node.right)
+    return [frozenset(convert_to_set(node))]
+
+
+def _is_tautology(clause):
+    return any(negate(lit) in clause for lit in clause)
+
+
+def _resolve(c1, c2):
+    """All non-trivial resolvents of two clauses."""
+    resolvents = set()
+    for lit in c1:
+        if negate(lit) in c2:
+            resolvents.add(frozenset((c1 - {lit}) | (c2 - {negate(lit)})))
+    return resolvents
+
+
+def entails(kb_formulas, query):
+    """Decide KB |= query by resolution-refutation."""
+    clauses = set()
+    for formula in kb_formulas:
+        for c in clauses_from_cnf(to_cnf(formula)):
+            if not _is_tautology(c):
+                clauses.add(c)
+
+    for c in clauses_from_cnf(to_cnf(Not(query))):
+        if not _is_tautology(c):
+            clauses.add(c)
+
+    if frozenset() in clauses:
+        return True
+
+    while True:
+        new = set()
+        clause_list = list(clauses)
+        for i in range(len(clause_list)):
+            for j in range(i + 1, len(clause_list)):
+                for r in _resolve(clause_list[i], clause_list[j]):
+                    if not r:
+                        return True
+                    if not _is_tautology(r):
+                        new.add(r)
+        if new.issubset(clauses):
+            return False
+        clauses |= new
 
 
 

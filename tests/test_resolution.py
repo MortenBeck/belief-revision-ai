@@ -276,3 +276,14 @@ def test_given_disjunction_only_when_querying_one_disjunct_then_not_entailed():
 def test_given_only_implication_when_querying_consequent_then_not_entailed():
     from resolution import entails
     assert entails([parse("IMPLIES A B")], parse("B")) is False
+
+
+# Biconditional in the KB. {A <-> B, A} |= B exercises the full pipeline:
+# CNF must rewrite A <-> B into (~A v B) ^ (~B v A), clauses_from_cnf must
+# split that into two separate clauses, and entails must combine the result
+# with the unit clause {A} to derive B. A bug in any of those three steps
+# breaks this test, so it serves as an integration check across the stack.
+def test_given_kb_with_biconditional_when_one_side_known_then_other_entailed():
+    from resolution import entails
+    kb = [parse("BICONDITIONAL A B"), parse("A")]
+    assert entails(kb, parse("B")) is True

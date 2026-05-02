@@ -171,6 +171,23 @@ def test_or_distributes_other_side():
     assert is_cnf(result)
 
 
+# Distributivity blow-up: (A ^ B) v (C ^ D) must produce all four pairwise
+# clauses (A v C) ^ (A v D) ^ (B v C) ^ (B v D). This is the case where naive
+# distribute implementations recurse on only one side and silently drop
+# clauses. We check the resulting tree is CNF and that all four expected
+# clauses appear after extracting them.
+def test_or_distributes_when_both_sides_are_and():
+    from resolution import clauses_from_cnf
+    result = cnf("OR (AND A B) (AND C D)")
+    assert is_cnf(result)
+    assert set(clauses_from_cnf(result)) == {
+        frozenset({"A", "C"}),
+        frozenset({"A", "D"}),
+        frozenset({"B", "C"}),
+        frozenset({"B", "D"}),
+    }
+
+
 # Idempotence: running to_cnf on something that is already in CNF should be a
 # no-op. This is important because resolution will repeatedly produce CNF
 # clauses, and we don't want the second pass to mutate them.
