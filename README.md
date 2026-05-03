@@ -60,4 +60,4 @@ Parentheses are used for grouping, and the notation is case-insensitive (e.g., `
 
 ## Report
 
-The accompanying report (4–6 pages) covers formalism, implementation choices, and lessons learned.
+The accompanying report (4–6 pages) covers formalism, implementation choices, and many lessons learned
