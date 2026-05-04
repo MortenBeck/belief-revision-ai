@@ -103,3 +103,8 @@ Not yet implemented. The assignment optionally asks the belief revision engine t
 ## Report
 
 The accompanying report (4–6 pages) covers formalism, implementation choices, and many lessons learned
+
+
+## Use of Generative AI
+
+Generative AI was used as an analytical tool and for git commit messages. 
