@@ -92,8 +92,8 @@ The implementation is tested against all five AGM postulates for both contractio
 | File | Tests | Covers |
 |---|---|---|
 | `tests/test_parse.py` | 14 | Parser: operators, nesting, parentheses, error cases |
-| `tests/test_cnf.py` | 31 | CNF pipeline: each stage in isolation and end-to-end |
-| `tests/test_resolution.py` | 20 | Clause extraction, entailment (positive and negative cases) |
+| `tests/test_cnf.py` | 25 | CNF pipeline: each stage in isolation and end-to-end |
+| `tests/test_resolution.py` | 26 | Clause extraction, entailment (positive and negative cases) |
 | `tests/test_belief_base.py` | 20 | AGM postulates for expansion, contraction, and revision |
 
 ## Optional: Mastermind
