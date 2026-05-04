@@ -102,8 +102,4 @@ Not yet implemented. The assignment optionally asks the belief revision engine t
 
 ## Report
 
-The accompanying report (4–6 pages) describes the formalism, implementation choices, and lessons learned, structured to follow the assignment's sequence of stages.
-
-## Use of Generative AI
-
-Generative AI was used as an analytical tool for this project, as well as for writing commit messages and this README.
+The accompanying report (4–6 pages) covers formalism, implementation choices, and many lessons learned
