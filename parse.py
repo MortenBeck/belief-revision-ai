@@ -33,7 +33,17 @@ UNARY_OPERATORS = {'NOT'}
 # Here the operators are defined
     
 def tokenize(input_string):
-    """"We take the input and split it into tokens. Also space for parantheses"""
+    """Split the input into tokens.
+
+    Whitespace separates tokens. Parentheses are pre-padded with spaces so
+    they tokenize on their own even when written flush against an operator
+    (e.g. ``IMPLIES(AND A B)C`` becomes ``IMPLIES ( AND A B ) C``).
+
+    No other punctuation is recognised: commas, dots, etc. become part of
+    the surrounding token and will fail later as "Unknown token". So
+    ``IMPLIES(A,B)`` does NOT work — operands must be space-separated.
+    Valid forms: ``IMPLIES A B``, ``IMPLIES (AND A B) C``.
+    """
     tokens = input_string.replace('(', ' ( ').replace(')', ' ) ').split()
     return tokens
 
